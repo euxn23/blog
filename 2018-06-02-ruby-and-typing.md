@@ -102,7 +102,7 @@ Ruby の文法に組み込まれるか、デファクトとなるライブラリ
 
 **※06/03 追記**
 
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">もしかして伝わってないかもしれませんが、言語仕様に型アノテーションを入れることには否定的ですが、コメントや型定義ファイルなどで型を「指定｜推定」する方法を標準化しようとしています。私の中ではSteepなどはその未来へ向けてのプロトタイプです。つまりは概ね期待通りの未来を目指してる？ <a href="https://t.co/0OZvWQJ6K6">https://t.co/0OZvWQJ6K6</a></p>&mdash; Yukihiro Matsumoto (@yukihiro_matz) <a href="https://twitter.com/yukihiro_matz/status/1002821853772050433?ref_src=twsrc%5Etfw">2018年6月2日</a></blockquote>
+[https://twitter.com/yukihiro_matz/status/1002821853772050433](https://twitter.com/yukihiro_matz/status/1002821853772050433)
 
 コメントによる型アノテーションについては標準化を検討しているようなので、事態はそれほど深刻ではないかもしれない。
 

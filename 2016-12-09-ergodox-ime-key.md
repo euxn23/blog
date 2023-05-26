@@ -33,9 +33,8 @@ ErgoDox は分離型であることに加え、 `qmk firmware` によってキ�
 
 なので、普段使わない `F15` / `F16` に IME になってもらいました。
 
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/mizchi">@mizchi</a> ErgoDox側でGUI/任意のキーに当てて、任意のキーをkarabinerでIME制御に変更する方法があります(任意のキーは死ぬ)</p>&mdash; yutaszk (@euta23) <a href="https://twitter.com/euta23/status/745540343710392320">2016年6月22日</a></blockquote>
-
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ErgoDoxのIMEはF15とF16にお亡くなりになってもらうべしって話をどこかで書く</p>&mdash; yutaszk (@euta23) <a href="https://twitter.com/euta23/status/746005350571118593">2016年6月23日</a></blockquote>
+[https://twitter.com/euxn23/status/745540343710392320](https://twitter.com/euxn23/status/745540343710392320)
+[https://twitter.com/euxn23/status/746005350571118593](https://twitter.com/euxn23/status/746005350571118593)
 
 しかしこれでは問題が発生しました。
 

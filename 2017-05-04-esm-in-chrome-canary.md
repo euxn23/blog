@@ -5,8 +5,7 @@ date: 2017-05-04
 
 @addyosmani 氏が日本時間 5/2 に Twitter で「ES6 Modules が Chrome Canary で動くようになりました」という旨のツイートをしていたので試しました。
 
-<blockquote class="twitter-tweet" data-lang="ja"><p lang="en" dir="ltr">ES2015 Modules just landed in Chrome Canary! 🔥 Flip on “Experimental Web Platform features” to give them a spin. Feedback welcome. <a href="https://t.co/rkP62NfHoB">pic.twitter.com/rkP62NfHoB</a></p>&mdash; Addy Osmani (@addyosmani) <a href="https://twitter.com/addyosmani/status/859296190323597313">2017年5月2日</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+[https://twitter.com/addyosmani/status/859296190323597313](https://twitter.com/addyosmani/status/859296190323597313)
 
 ## Chrome 側の設定
 
