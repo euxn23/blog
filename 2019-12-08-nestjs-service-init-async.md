@@ -230,7 +230,7 @@ services:
     - 3306:3306
 ```
 
-```Dockerfile:Dockerfile
+```dockerfile:Dockerfile
 FROM mysql:5.7
 
 COPY create-table.sql /docker-entrypoint-initdb.d/create-table.sql
