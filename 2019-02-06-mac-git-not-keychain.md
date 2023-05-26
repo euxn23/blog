@@ -14,6 +14,6 @@ file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/gitconfig    
 
 ```
 
-こちらがすでにない場合は、  `/usr/local/etc/gitconfig` や `/usr/local/git/etc/gitconfig` 等に記述があるかもしれません
+こちらがすでにない場合は、 `/usr/local/etc/gitconfig` や `/usr/local/git/etc/gitconfig` 等に記述があるかもしれません
 
 これを消すと osxkeychain がなくなります

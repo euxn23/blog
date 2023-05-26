@@ -17,13 +17,13 @@ Node.js の最大の特徴とも言える Promise ですが、最近では async
 
 ```js
 const users = [
-  { name: 'kirito', weapon: 'elucidator' },
-  { name: 'sinon', weapon: 'hecate' }
-]
+  { name: "kirito", weapon: "elucidator" },
+  { name: "sinon", weapon: "hecate" },
+];
 
-users.forEach(async user => await saveUser(user))
+users.forEach(async (user) => await saveUser(user));
 
-const users = await fetchUsers() // []
+const users = await fetchUsers(); // []
 ```
 
 async function はそれ自体が非同期であるため、forEach のイテレーションでは `await saveUser(user)` の結果を待たずに次のイテレーションに移ります。
@@ -35,9 +35,9 @@ async function はそれ自体が非同期であるため、forEach のイテレ
 ### 1. Promise.all を使う(並列実行)
 
 ```js
-await Promise.all(users.map(async user => await saveUser(user)))
+await Promise.all(users.map(async (user) => await saveUser(user)));
 
-const users = await fetchUsers() // [ { name: 'kirito', weapon: 'elucidator', { name: 'sinon', ...
+const users = await fetchUsers(); // [ { name: 'kirito', weapon: 'elucidator', { name: 'sinon', ...
 ```
 
 users.map は `Array<Promise<void>>` を返します。map の結果が返る時点では async function の実行が保証されないのは同様です。
@@ -52,10 +52,10 @@ js に慣れてくると「 for ループとかダッサｗ」となることも
 
 ```js
 for (const user of users) {
-  await saveUser(user)
+  await saveUser(user);
 }
 
-const users = await fetchUsers() // [ { name: 'kirito', weapon: 'elucidator', { name: 'sinon', ...
+const users = await fetchUsers(); // [ { name: 'kirito', weapon: 'elucidator', { name: 'sinon', ...
 ```
 
 Promise 独自の複雑な記法を用いずに、同期的な処理のように記述できます。
@@ -64,13 +64,13 @@ Promise.all は上記の通り全並列実行で順序保障が無いのに対�
 
 ## 並列と直列の使い分けと注意点
 
-直列実行は全 async function の実行時間の累積になるのに対し、並列実行は実行1回分で済む、と思いがちですが、
+直列実行は全 async function の実行時間の累積になるのに対し、並列実行は実行 1 回分で済む、と思いがちですが、
 
 実際にはネットワークや CPU の詰まり具合によってはエラーが発生したり固まったりします。
 
 特に開発機で CPU 負荷の高い async function を並列で実行すると GUI が固まり何も作業ができなくなる、ということがあります。
 
-たとえば、 `child_process.exec()` で400リポジトリを同時に clone すると Disk Write が張り付いて固まりますし、ネットワークのエラーが出ることもあります。
+たとえば、 `child_process.exec()` で 400 リポジトリを同時に clone すると Disk Write が張り付いて固まりますし、ネットワークのエラーが出ることもあります。
 
 秒間のリクエスト数を制限しているサービスでは、その認証エラーも発生しますし、失敗した場合の再度実行を行おうにも、順序保障がされていないため、 **どこまで** ではなく **何を** を処理完了したか、を記録しなくてはいけません。
 
@@ -89,28 +89,29 @@ Promise.all は上記の通り全並列実行で順序保障が無いのに対�
 よほど(標準の `Promise` にフックするとかオーバーライドするとか)のことがなければ問題にならないとは思いますが、念のため気に留めておくと良さそうです。
 
 ```js
-const promiseMap = require('bluebird').map
+const promiseMap = require("bluebird").map;
 
 const main = async () => {
-  const numArr = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  const numArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   await promiseMap(
     numArr,
-    num => new Promise(resolve =>
-      setTimeout(() => {
-        console.log(num)
-        resolve()
-      }, 1000)
-    ),
+    (num) =>
+      new Promise((resolve) =>
+        setTimeout(() => {
+          console.log(num);
+          resolve();
+        }, 1000)
+      ),
     { concurrency: 2 }
-  )
+  );
 
-  console.log('end')
-}
+  console.log("end");
+};
 
-main()
+main();
 ```
 
-1秒ごとに2要素ずつ出力されますが、順序はバラバラになります。
+1 秒ごとに 2 要素ずつ出力されますが、順序はバラバラになります。
 
 ## 終わりに
 

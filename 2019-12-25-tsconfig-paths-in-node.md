@@ -152,7 +152,6 @@ Hello tsconfig-paths demo
 動作することから、実行時に typescript に依存していないだろうことが分かります。
 念の為以下で確認します。
 
-
 ## tsconfig-paths/register が何をしているのか実装を確認する
 
 該当関数は以下になります。
@@ -212,12 +211,11 @@ export function register(explicitParams: ExplicitParams): () => void {
 
 また、上記の通り typescript / ts-node は dependencies にも peerDependencies にも入っていません。
 
-
 ## 実行時コンテキストを tsconfig.json に依存させたくない
 
 上記で実行時に typescript への依存がないことは分かりましたが、 tsconfig.json への依存さえも無くしたいケースもあるかと思います。
 単純に node で実行するのに tsconfig.json の変更に影響されることを嫌う場合や、 Firebase Functions などで tsconfig.json へのファイル参照を行いたくない場合などです。
-これの解決のため、2つの方法を紹介します。
+これの解決のため、2 つの方法を紹介します。
 
 1. tsconfig-paths の register にオプション引数を渡す
 
@@ -261,7 +259,6 @@ $ node -r module-alias/register dist/main.js
 
 ただしこちらは alias に Array / ワイルドカードが指定できないという制約があります。
 どうしても tsconfig-paths を使いたくない、という場合は、必要に応じて検討してください。
-
 
 ## おわりに
 

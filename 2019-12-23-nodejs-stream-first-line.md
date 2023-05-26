@@ -18,11 +18,11 @@ gzip ファイルなどの圧縮されたファイルを読み込む際、たと
 例えば、ファイルを読み込んで標準出力に表示します。
 
 ```typescript
-import fs from 'fs';
+import fs from "fs";
 
-const input = fs.createReadStream('tsconfig.json', 'utf-8');
+const input = fs.createReadStream("tsconfig.json", "utf-8");
 
-input.pipe(process.stdout)
+input.pipe(process.stdout);
 ```
 
 書き込みの例として、大きなサイズの csv を生成するスクリプトをファイルに書き込みます。
@@ -42,13 +42,13 @@ arr.forEach(idx => {
 大きなデータなので複数に別れて buffer で流れます。データが来るたびに区切り文字を表示して標準出力に表示する場合はこうです。
 
 ```typescript
-import fs from 'fs';
+import fs from "fs";
 
-const input = fs.createReadStream('bigdata.csv', 'utf-8');
+const input = fs.createReadStream("bigdata.csv", "utf-8");
 
-input.on('data', (buf) => {
-  console.log(buf.toString())
-  console.log('---')
+input.on("data", (buf) => {
+  console.log(buf.toString());
+  console.log("---");
 });
 ```
 
@@ -57,19 +57,17 @@ input.on('data', (buf) => {
 標準ライブラリの zlib から pipe を作成し適用します。
 
 ```typescript
-import zlib from 'zlib';
+import zlib from "zlib";
 import fs from "fs";
 
-const gzip = zlib.createGunzip()
+const gzip = zlib.createGunzip();
 
 async function main() {
-  const readStream = fs.createReadStream('bigdata.csv.gzip')
-  readStream
-    .pipe(gzip)
-    .on('data', (buf) => {
-      console.log(buf.toString())
-      console.log('---')
-    })
+  const readStream = fs.createReadStream("bigdata.csv.gzip");
+  readStream.pipe(gzip).on("data", (buf) => {
+    console.log(buf.toString());
+    console.log("---");
+  });
 }
 
 main().catch((e) => {
@@ -84,28 +82,28 @@ main().catch((e) => {
 なお、 `stream.destroy()` が間に合わず次のデータが流れてくることは普通にあるので、一度限りの処理に限定できるよう関数に切り出すのが良さそうです。
 
 ```typescript
-import zlib from 'zlib';
+import zlib from "zlib";
 import fs from "fs";
 
-const gzip = zlib.createGunzip()
+const gzip = zlib.createGunzip();
 
 async function main() {
-  const readStream = fs.createReadStream('bigdata.csv.gzip')
-  const firstLine = await getFirstLineFromStream(readStream.pipe(gzip))
-  console.log(firstLine)
+  const readStream = fs.createReadStream("bigdata.csv.gzip");
+  const firstLine = await getFirstLineFromStream(readStream.pipe(gzip));
+  console.log(firstLine);
 }
 
 async function getFirstLineFromStream(stream: Readable) {
   return new Promise((resolve, reject) => {
-    stream.on('data', (buf) => {
+    stream.on("data", (buf) => {
       stream.destroy();
       const string = buf.toString();
       const [firstLine] = string.split("\n");
 
       resolve(firstLine);
-    })
-    stream.on('error', reject);
-  })
+    });
+    stream.on("error", reject);
+  });
 }
 
 main().catch((e) => {
@@ -119,32 +117,34 @@ main().catch((e) => {
 `s3.getObject().createReadStream()` するだけです。 await は要りません。
 
 ```typescript
-import zlib from 'zlib';
+import zlib from "zlib";
 import fs from "fs";
 
-import { S3 } from 'aws-sdk';
+import { S3 } from "aws-sdk";
 
-const gzip = zlib.createGunzip()
+const gzip = zlib.createGunzip();
 
 async function main() {
-  const s3 = new S3()
-  const readStream = s3.getObject({Bucket: 'your-awesome-bucket', Key: 'bigdata.csv.gzip'}).createReadStream();
+  const s3 = new S3();
+  const readStream = s3
+    .getObject({ Bucket: "your-awesome-bucket", Key: "bigdata.csv.gzip" })
+    .createReadStream();
 
-  const firstLine = await getFirstLineFromStream(readStream.pipe(gzip))
-  console.log(firstLine)
+  const firstLine = await getFirstLineFromStream(readStream.pipe(gzip));
+  console.log(firstLine);
 }
 
 async function getFirstLineFromStream(stream: Readable) {
   return new Promise((resolve, reject) => {
-    stream.on('data', (buf) => {
+    stream.on("data", (buf) => {
       stream.destroy();
       const string = buf.toString();
       const [firstLine] = string.split("\n");
 
       resolve(firstLine);
-    })
-    stream.on('error', reject);
-  })
+    });
+    stream.on("error", reject);
+  });
 }
 
 main().catch((e) => {

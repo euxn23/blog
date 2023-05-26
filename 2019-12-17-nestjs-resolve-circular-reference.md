@@ -16,7 +16,6 @@ https://github.com/nestjs-jp/advent-calendar-2019/tree/master/day10-resolve-circ
 
 なお、環境は執筆時点での Node.js の LTS である v12.13.x を前提とします。
 
-
 ## 循環参照を観測する
 
 循環参照が発生する例として、以下のようなサンプルコードを用意しました。

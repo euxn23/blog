@@ -27,8 +27,8 @@ class の new は同期的に処理されるため constructor も同期的に�
 先日の例では以下のように Domain の Service で DB を初期化しました。
 
 ```typescript
-import { Injectable } from '@nestjs/common';
-import { createConnection, Connection } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { createConnection, Connection } from "typeorm";
 
 @Injectable()
 export class ItemsService {
@@ -36,16 +36,16 @@ export class ItemsService {
 
   constructor() {
     createConnection({
-      type: 'mysql',
-      host: '0.0.0.0',
+      type: "mysql",
+      host: "0.0.0.0",
       port: 3306,
-      username: 'root',
-      database: 'test',
+      username: "root",
+      database: "test",
     })
-      .then(connection => {
+      .then((connection) => {
         this.connection = connection;
       })
-      .catch(e => {
+      .catch((e) => {
         throw e;
       });
   }
@@ -55,7 +55,7 @@ export class ItemsService {
     if (this.connection) {
       return;
     }
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await this.waitToConnect();
   }
 
@@ -65,7 +65,7 @@ export class ItemsService {
     }
     await this.connection.query(
       `INSERT INTO items (title, body, deletePassword) VALUE (?, ?, ?)`,
-      [title, body, deletePassword],
+      [title, body, deletePassword]
     );
   }
 }
@@ -75,7 +75,6 @@ export class ItemsService {
 
 1. 他の Domain でも DB 接続を行うことを前提に、 DB 接続管理を別のサービスに委譲するべき
 2. constructor で非同期な初期化処理を行なっているので、メソッドの実行タイミングによっては初期化が完了していない
-
 
 1 の問題を解決するために ItemsModule から切り離し、 DatabaseModule としてそのまま定義すると以下のようになります。
 
@@ -139,7 +138,7 @@ import { createConnection, Connection } from 'typeorm';
 @Injectable()
 export class DatabaseService {
   connection: Connection;
-  
+
   async initialize() {
     this.connection = await createConnection({
       type: 'mysql',
@@ -264,7 +263,7 @@ export class DatabaseController {
 
 ```bash
 $ curl localhost:3000/database
-Hello World% 
+Hello World%
 ```
 
 ## おわりに

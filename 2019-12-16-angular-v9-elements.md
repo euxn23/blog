@@ -3,11 +3,11 @@ title: "Angular v9 で Angular Elements(WebComponents 出力)を使う"
 date: 2019-12-16
 ---
 
-この記事は [Angular アドベントカレンダー 2019](https://qiita.com/advent-calendar/2019/angular) の11 日目の記事です。体調不良につき遅くなり申し訳ありません……。
+この記事は [Angular アドベントカレンダー 2019](https://qiita.com/advent-calendar/2019/angular) の 11 日目の記事です。体調不良につき遅くなり申し訳ありません……。
 
 ## はじめに
 
-Angular の WebComponents 出力である Angular Elements が搭載されたのが Angular v6 でのことなので、1年半になります。
+Angular の WebComponents 出力である Angular Elements が搭載されたのが Angular v6 でのことなので、1 年半になります。
 
 今年は Setncil 1.0 がリリースされ、 lit-html での実装に比べ抽象度を高く保ちつつも、 pure WebComponents としての出力することができることから注目を浴びているように感じます。
 Stencil での実装としても、 Angular の良い点である ShadowDOM + Sass を継承しており、 Component 単位で見ると Angular に通じる開発体験がある箇所もあります。
@@ -151,7 +151,6 @@ $ yarn http-server .
 http://localhost:8080/static にアクセスすると、ボタンが存在し、クリックするとカウントが取得できます。
 また、 console を見ると、イベントをキャプチャできていることが分かります。
 
-
 ## 参考: Stencil での実装とバンドルサイズの比較
 
 同様の WebComponent を Stencil で以下のように実装し、バンドルサイズを計測します。
@@ -193,7 +192,7 @@ export const config: Config = {
 };
 ```
 
-実装が1つにまとめられているファイルは `dist/app-my-counter/app-my-counter.js` になるのでこちらを読み込みます。
+実装が 1 つにまとめられているファイルは `dist/app-my-counter/app-my-counter.js` になるのでこちらを読み込みます。
 
 ```html:src/index.html
 <!DOCTYPE html>

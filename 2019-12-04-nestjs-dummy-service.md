@@ -11,13 +11,11 @@ date: 2019-12-04
 なお、サンプルでは MySQL に接続したり Docker を使用したりしていますが、怖がらないでください。
 この記事では MySQL や Docker に依存せずにテストできるようにするテクニックを説明します。
 
-
 サンプルコードのリポジトリは以下になります。
 
 https://github.com/nestjs-jp/advent-calendar-2019/tree/master/day04-inject-dummy-service-to-avoid-external-dependency
 
 なお、環境は執筆時点での Node.js の LTS である v12.13.1 を前提とします。
-
 
 ## サンプルアプリの雛形を作る
 
@@ -169,7 +167,6 @@ $ curl locaohost:3000/items
 
 無事保存できるアプリケーションができました。
 
-
 ## MySQL がない状態でもテストできるようにする
 
 アプリケーションができたので、Mock を使ってテストを記述します。
@@ -178,7 +175,7 @@ $ curl locaohost:3000/items
 今回は DI に関連するため、 cli で自動生成される雛形にも用いられている `Test` モジュールを使用します。
 
 ```typescript
-describe('ItemsController', () => {
+describe("ItemsController", () => {
   let itemsController: ItemsController;
   let itemsService: ItemsService;
 
@@ -191,8 +188,8 @@ describe('ItemsController', () => {
     itemsController = new ItemsController(itemsService);
   });
 
-  describe('/items', () => {
-    it('should return items', async () => {
+  describe("/items", () => {
+    it("should return items", async () => {
       expect(await itemsController.getItems()).toHaveLength(1);
     });
   });
@@ -240,14 +237,14 @@ class DummyItemsService {
   async getItems() {
     const item = {
       id: 1,
-      title: 'Dummy Title',
-      body: 'Dummy Body',
+      title: "Dummy Title",
+      body: "Dummy Body",
     };
     return [item];
   }
 }
 
-describe('ItemsController', () => {
+describe("ItemsController", () => {
   let itemsController: ItemsController;
   let itemsService: ItemsService;
 
@@ -263,8 +260,8 @@ describe('ItemsController', () => {
     itemsController = new ItemsController(itemsService);
   });
 
-  describe('/items', () => {
-    it('should return items', async () => {
+  describe("/items", () => {
+    it("should return items", async () => {
       expect(await itemsController.getItems()).toHaveLength(1);
     });
   });
@@ -293,10 +290,8 @@ Ran all test suites.
 
 この記事で NestJS の持つ強力な DI の機能をお伝えできたかと思います。
 より詳細な内容は公式のドキュメントの E2E テストの項にあるので、合わせてご確認ください。
-[https://docs.nestjs.com/fundamentals/testing#end-to-end-testing](https://docs.nestjs.com/fundamentals/testing#end-to-end-testing )
+[https://docs.nestjs.com/fundamentals/testing#end-to-end-testing](https://docs.nestjs.com/fundamentals/testing#end-to-end-testing)
 
 また、今回説明できなかった TypeORM との合わせ方や、非同期の初期化を必要とする Service の扱い方については、後日別の記事で説明します。
 
 明日は @potato4d さんが ExceptionFilter についてお話する予定です。
-
-

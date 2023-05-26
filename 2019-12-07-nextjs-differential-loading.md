@@ -8,7 +8,7 @@ date: 2019-12-07
 ## はじめに
 
 [Chrome Dev Summit 2019 に参加してきた](https://blog.euxn.me/entry/2019/11/16/000000)のですが、その中で Google が Next.js を手厚くサポートしているという話があり、特にビルドと配信について興味深かったのでかいつまんで紹介します。
-なお該当の動画は以下にあります。13分あたりから Next.js についての話になります。
+なお該当の動画は以下にあります。13 分あたりから Next.js についての話になります。
 
 https://developer.chrome.com/devsummit/sessions/advancing-the-web-framework-ecosystem/
 
@@ -22,7 +22,7 @@ https://developer.chrome.com/devsummit/sessions/advancing-the-web-framework-ecos
 例えば、以下の RestSpread を用いたコードをトランスパイルしてみます。
 
 ```javascript
-const restSpread = (arr) => [...arr]
+const restSpread = (arr) => [...arr];
 ```
 
 これを `@babel/preset-env` の target を esmodules に指定してトランスパイルすると以下になります。
@@ -30,13 +30,32 @@ const restSpread = (arr) => [...arr]
 ```javascript
 "use strict";
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) {
+  return (
+    _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread()
+  );
+}
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _iterableToArray(iter) {
+  if (
+    Symbol.iterator in Object(iter) ||
+    Object.prototype.toString.call(iter) === "[object Arguments]"
+  )
+    return Array.from(iter);
+}
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
+}
 
 var restSpread = function restSpread(arr) {
   return _toConsumableArray(arr);

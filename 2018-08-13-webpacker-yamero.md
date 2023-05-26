@@ -7,7 +7,6 @@ date: 2018-08-13
 
 上記の記事には概ね同意であるものの、脱出するべきときばかりでもないかと思ったので、自分の経験も踏まえて書きます。
 
-
 ## Webpacker を辞めるべきでない場合
 
 **チームにフロントエンドをキャッチアップし続ける人がいない場合** です。
@@ -19,7 +18,6 @@ date: 2018-08-13
 ちょっとした React を使うだけの場合や、単に asset pipeline から脱却する程度であれば問題ないと考えられます。
 
 (ただし css を脱却するメリットがあるかどうかは要検討)
-
 
 ## Webpacker を辞めるタイミングの指標
 
@@ -37,21 +35,19 @@ webpacker 状態でカスタマイズするリスクとしては、
 
 DSL や ruby 側からの抽象化については、冒頭の記事に詳細に書いてあります。 @f_subal 氏の苦悩が伺えますね……
 
-
 ## Webpacker の中で Rails に必要なモノ
 
-- 複数 entrypoint にハッシュ値を付与してビルドする設定(Manifest Plugin等)
+- 複数 entrypoint にハッシュ値を付与してビルドする設定(Manifest Plugin 等)
 - View Helper
 - Assets Pipeline との統合
 
 主に上記かと思います。
 
-
 ## Webpacker を辞めるために
 
 ### Rails に合わせた webpack.config
 
-主に entry と plugin ですが、3つ方法があります。
+主に entry と plugin ですが、3 つ方法があります。
 
 - Webpacker の出力コードをコピペする
 - `@rails/webpacker` の `environment.toWebpackConfig` から値を抜き取る
@@ -97,7 +93,6 @@ module.exports = {
 Assets Pipeline 時に webpacker のビルドもしてくれていましたが、それがなくなるので、差し込む必要があります。
 
 テスト前に自前ビルド、デプロイ前に自前ビルド、等でしょうか。
-
 
 ## まとめ
 

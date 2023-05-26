@@ -16,9 +16,9 @@ RubyKaigi2018 の発表で型の導入の検討についての話がいくつか
 
 なお、当時のハッシュタグに多くの参加者の意見が書かれているので、参考としてほしい。[Replay for RubyKaigi](https://replayrubykaigi.herokuapp.com/) に感謝。
 
-* [A practical type system for Ruby at Stripe.](https://twitter.com/search?f=tweets&q=%23rubykaigiB%20since%3A2018-05-31_13%3A50%3A00_JST%20until%3A2018-05-31_14%3A30%3A00_JST&src=typd)
-* [Ruby Programming with Type Checking](https://twitter.com/search?f=tweets&q=%23rubykaigiA%20since%3A2018-06-01_14%3A40%3A00_JST%20until%3A2018-06-01_15%3A20%3A00_JST&src=typd)
-* [Type Profiler: An analysis to guess type signatures](https://twitter.com/search?f=tweets&q=%23rubykaigiA%20since%3A2018-06-01_16%3A40%3A00_JST%20until%3A2018-06-01_17%3A20%3A00_JST&src=typd)
+- [A practical type system for Ruby at Stripe.](https://twitter.com/search?f=tweets&q=%23rubykaigiB%20since%3A2018-05-31_13%3A50%3A00_JST%20until%3A2018-05-31_14%3A30%3A00_JST&src=typd)
+- [Ruby Programming with Type Checking](https://twitter.com/search?f=tweets&q=%23rubykaigiA%20since%3A2018-06-01_14%3A40%3A00_JST%20until%3A2018-06-01_15%3A20%3A00_JST&src=typd)
+- [Type Profiler: An analysis to guess type signatures](https://twitter.com/search?f=tweets&q=%23rubykaigiA%20since%3A2018-06-01_16%3A40%3A00_JST%20until%3A2018-06-01_17%3A20%3A00_JST&src=typd)
 
 ## Ruby の選定について
 
@@ -56,9 +56,9 @@ Ruby でもこのような規則を用いて開発を行いたい場合に型が
 
 秩序が欲しいだけならば型に限らないのだが、それでも型に期待する理由としては主に以下があると考える。
 
-* JavaScript や Python での漸進的型付けによる成功体験
-* Ruby に型を入れる、という Matz の発言による期待値の高まり
-* JIT の性能向上の期待
+- JavaScript や Python での漸進的型付けによる成功体験
+- Ruby に型を入れる、という Matz の発言による期待値の高まり
+- JIT の性能向上の期待
 
 Matz が初めから「型は入れない」と言っていたら期待値は変わっていたかもしれないし、型が欲しい人は早々に見切りをつけていたかもしれない。
 
@@ -88,9 +88,9 @@ Ruby の文法に組み込まれるか、デファクトとなるライブラリ
 
 型がないプロダクトでこれ以上やっていきたくない、という段階で型が欲しいときの選択肢は以下だと考える。
 
-* [soutaro/steep](https://github.com/soutaro/steep) 等のサードパーティ製の型定義を各種ライブラリにコントリビュートしていく
-* プロダクトを型付き言語で作り直す
-* プロジェクトを離れる
+- [soutaro/steep](https://github.com/soutaro/steep) 等のサードパーティ製の型定義を各種ライブラリにコントリビュートしていく
+- プロダクトを型付き言語で作り直す
+- プロジェクトを離れる
 
 1 つ目について、自分たちが書く箇所に型があるよりも、ライブラリ側に型がある方が恩恵が大きいと感じる。逆に言うと、ライブラリで型が提供されない場合、呼び出し箇所全てに型定義が必要になる。
 
@@ -105,7 +105,6 @@ Ruby の文法に組み込まれるか、デファクトとなるライブラリ
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">もしかして伝わってないかもしれませんが、言語仕様に型アノテーションを入れることには否定的ですが、コメントや型定義ファイルなどで型を「指定｜推定」する方法を標準化しようとしています。私の中ではSteepなどはその未来へ向けてのプロトタイプです。つまりは概ね期待通りの未来を目指してる？ <a href="https://t.co/0OZvWQJ6K6">https://t.co/0OZvWQJ6K6</a></p>&mdash; Yukihiro Matsumoto (@yukihiro_matz) <a href="https://twitter.com/yukihiro_matz/status/1002821853772050433?ref_src=twsrc%5Etfw">2018年6月2日</a></blockquote>
 
 コメントによる型アノテーションについては標準化を検討しているようなので、事態はそれほど深刻ではないかもしれない。
-
 
 ## Rails が悪い/終わったわけではない
 

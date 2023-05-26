@@ -4,11 +4,13 @@ date: 2017-12-25
 ---
 
 ## まえおき
-この記事は[React Advent Calendar 2017](https://qiita.com/advent-calendar/2017/react)の2日目になるはずでしたが25日目が空いていたので代わりに25日目です。~~いずれにせよ遅刻なのですが……~~
+
+この記事は[React Advent Calendar 2017](https://qiita.com/advent-calendar/2017/react)の 2 日目になるはずでしたが 25 日目が空いていたので代わりに 25 日目です。~~いずれにせよ遅刻なのですが……~~
 
 本文中のサンプルコードは[github.com/euxn23/react-ssr-sample](https://github.com/euxn23/react-ssr-sample) にあります。ビルド済みなので `npm install` してそのまま動きます
 
 ## ServerSideRendering とは
+
 言葉の通りに読めばサーバ側でレンダリングすることであるが、フロントエンドの文脈では、本来ブラウザ上で構築される DOM をサーバ側で生成してから返すことで、
 
 - イニシャルビューが早くなる
@@ -20,6 +22,7 @@ date: 2017-12-25
 React での SSR をやってみるにあたって、サーバサイドの経験がないと、どのように動くのかイメージが湧かないという話を聞いたので、まず通常のサーバサイドでのテンプレートエンジンでのレンダリングの話をし、それから React での SSR の話をする
 
 ## 1. テンプレートエンジンによるサーバサイドレンダリング
+
 ※ サーバサイドの話がわかる人はこの章は読み飛ばして問題なさそうです
 
 古くから(要出典)ある方式であり、わかりやすい言語でいうと PHP がまさにそれである
@@ -31,6 +34,7 @@ React での SSR をやってみるにあたって、サーバサイドの経験
 使用する node.js のバージョンは 8 以降を推奨する
 
 ### Express.js + ejs で HTML を動的生成する
+
 まず非常にシンプルに、 HTML をテキストで返すコードを、 Express.js を用いてサーバサイドの技術で実装する
 
 ```js:sample01.js
@@ -122,7 +126,7 @@ app.listen(3000)
 
 外部 API コールをサーバ側で行う場合、その API が重い場合はそれの解決を待ってから render されるため、レスポンスが遅くなる
 
-今回は、2秒ほど待ってレスポンスを返す API を用意したのでそちらを叩く
+今回は、2 秒ほど待ってレスポンスを返す API を用意したのでそちらを叩く
 
 ```js:sample04.js
 'use strict'
@@ -158,6 +162,7 @@ app.listen(3000)
 最初にあげた通り、React で SSR をするメリットはこの辺りだろう
 
 ## 2. React.js の Component を使い HTML を動的生成する
+
 まずは、上記のように、React の Component を単なるテンプレートとして使用する例から実装する
 
 ```js:sample01.js
@@ -334,6 +339,7 @@ module.exports = class MyComponent extends Component {
 クエリパラメータも同様にサーバ側で処理し props にして渡す
 
 ## 3. React SSR と非同期処理
+
 外部 API コールによるデータ処理をサーバ側で行いレンダリングしたいというケースも SSR ではあると考えられる
 
 そのようなケースは以下のように、サーバ側でデータを取得し、グローバル変数 `DEFAULT_PROPS` に格納されるように HTML をレンダリングし、ブラウザ側のコードではこのグローバル変数を取得して Component に Props として渡す、という処理をする
@@ -565,6 +571,7 @@ lazyApiCallAndRerender()
 ```
 
 ## 4. 簡単な SSR アプリを作る
+
 例として Twitter の検索結果を表示するアプリを SSR で作る
 
 イニシャルビューで直近 200 件のデータをレンダリングするため、このようなケースでは SSR によってパフォーマンス向上が期待できる
@@ -677,6 +684,7 @@ ReactDOM.render(React.createElement(MyComponent, { tweets }), document.querySele
 ```
 
 ## 5. より高度な SSR アプリを作るために
+
 上記では Express から始まり React 単体での SSR を簡単に説明した
 
 Redux を使う場合は、 Store をグローバル変数に配置しサーバからクライアントに渡す、という手法で実装できる

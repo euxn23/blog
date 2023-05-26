@@ -190,8 +190,7 @@ export interface CorsOptions {
 
 ## ビルドとプロダクション実行
 
-`@nestjs/cli` の `nest start` コマンドは、内部で [TypeScript をコンパイルしてから実行している](
-https://github.com/nestjs/nest-cli/blob/master/actions/start.action.ts#L50)ため、起動が遅くなっています。
+`@nestjs/cli` の `nest start` コマンドは、内部で [TypeScript をコンパイルしてから実行している](https://github.com/nestjs/nest-cli/blob/master/actions/start.action.ts#L50)ため、起動が遅くなっています。
 開発時は `nest start --watch` を使用することで自動でビルド 〜 再起動までしてくれるため回避できますが、プロダクションでは、特にクラウドネイティブな環境では起動が遅いことがパフォーマンスのネックとなることが往々にしてあります。
 
 本来の TypeScript のアプリケーションと同様にビルドして実行するために、 `@nestjs/cli` では、 `nest build` コマンドが用意されています。

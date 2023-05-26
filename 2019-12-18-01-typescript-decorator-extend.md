@@ -180,7 +180,7 @@ class JapaneseUser extends User {
     super(name);
     this.name = name;
   }
-  
+
   sayHello() {
     console.log(`こんにちは、私は${this.name}です。`);
   }
@@ -258,8 +258,8 @@ beth
 1
 ```
 
-User Class のインスタンスは子 Class 含め複数回生成していますが、  Decorator 関数は 1度しか呼ばれていません。
-コンパイル済みの以下のコードを見ると、 Class 宣言の後に1度評価されているのみであることが分かります。
+User Class のインスタンスは子 Class 含め複数回生成していますが、 Decorator 関数は 1 度しか呼ばれていません。
+コンパイル済みの以下のコードを見ると、 Class 宣言の後に 1 度評価されているのみであることが分かります。
 
 ```javascript:dist/main.js
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -300,12 +300,12 @@ console.log(effectContainer);
 //# sourceMappingURL=main.js.map
 ```
 
-この例で上げたのが副作用であるのは、 Decorator 関数の返す関数が取れる引数が 2つのみであり、 PropertyDescripter が存在しないため、呼び出し元の Class に対して何も操作することが現状できないためです。
+この例で上げたのが副作用であるのは、 Decorator 関数の返す関数が取れる引数が 2 つのみであり、 PropertyDescripter が存在しないため、呼び出し元の Class に対して何も操作することが現状できないためです。
 子 Class に対して定義した場合は、新規の定義として実行されます。
 
 ```typescript
 class JapaneseUser extends User {
-  @Effect('decorating JapaneseUser.name property')
+  @Effect("decorating JapaneseUser.name property")
   name: string;
 
   constructor(name: string) {
@@ -322,7 +322,7 @@ beth
 有栖
 {
   User: { name: 'decorating User.name property' },
-  JapaneseUser: { name: 'decorating JapaneseUser.name property' } 
+  JapaneseUser: { name: 'decorating JapaneseUser.name property' }
 }
 2
 ```
@@ -338,17 +338,17 @@ class-validator では上記の Property Decorator を使用して定義しま�
 
 ```javascript
 class User {}
-const user = new User()
-user instanceof User //=> true
+const user = new User();
+user instanceof User; //=> true
 class ExUser extends User {}
-const exUser = new ExUser()
-exUser instanceof User //=>true
+const exUser = new ExUser();
+exUser instanceof User; //=>true
 ```
 
 子孫クラスであることを明確に区別したい場合は、 Class 名を取得して比較するのが良いです。
 
 ```javascript
-user.constructor.name === exUser.constructor.name //=> false
+user.constructor.name === exUser.constructor.name; //=> false
 ```
 
 ## おわりに

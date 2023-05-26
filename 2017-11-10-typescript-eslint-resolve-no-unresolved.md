@@ -9,10 +9,9 @@ README にある `import/parsers` に `eslint-typescript-parser` を指定する
 
 ぱっと思いつく方法では、 `eslint-import-resolver-typescript` のようなものを使えば良さそうですが、実際に存在するものは DL も star も少ないので不安なので、別の方法で解決します。
 
-
-
 ## 1. `eslint-import-resolver-node` を使用し、オプションとして拡張子を指定する
-このresolver は `es6` や `coffee` 等も解決できるよう、オプションで拡張子が指定できるようになっています。
+
+この resolver は `es6` や `coffee` 等も解決できるよう、オプションで拡張子が指定できるようになっています。
 
 ```yaml
 settings:
@@ -24,6 +23,7 @@ settings:
 ```
 
 ## 2. `eslint-import-resolver-webpack` を使用し、resolve の設定を流用する
+
 プロジェクトがフロントエンドの場合など、 webpack を使用していてそちらに拡張子解決についての記載があれば、それを eslint での resolve に流用できます。
 
 ```yaml
@@ -36,8 +36,8 @@ settings:
 ```yaml
 settings:
   import/resolver:
-   webpack:
-     config: 'webpack.dev.config.js'
+    webpack:
+      config: "webpack.dev.config.js"
 ```
 
 というように config ファイルを指定することもできます。

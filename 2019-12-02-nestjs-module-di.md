@@ -198,7 +198,6 @@ describe('CommentsService', () => {
 
 なお、自明である内容をテストしている箇所があるため、今後はテストが必要であるところのみ、テストを記述します。
 
-
 ## Module 間で DI のスコープが別れていることを確認する
 
 Module をまたいだ DI は行えないため、 ItemsController で CommentsService を使用することはできません。
@@ -272,7 +271,6 @@ export class CommentsModule {}
 })
 export class ItemsModule {}
 ```
-
 
 ここで重要なのは `export` が必要ということで、ただ CommentsModule を `import` するだけでは同様のエラーとなります。
 export を使用してはじめて他の Module から参照可能になるということです。

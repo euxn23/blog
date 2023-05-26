@@ -3,7 +3,7 @@ title: "rubyでTwitterから画像urlを取得する"
 date: 2015-08-15
 ---
 
-gem twitterを使用してツイートから画像のURLだけを抽出します。
+gem twitter を使用してツイートから画像の URL だけを抽出します。
 
 ```ruby:app.rb
 require 'twitter'
@@ -19,9 +19,9 @@ tweets = @client.home_timeline(count: 200)
 imgs = tweets.flat_map { |s| s.media}.map { |m| m.media_url.to_s}
 ```
 
-以上のようにmediaを取得すると**pic.twitter.comの画像しか取得できない**ため、動画の判定処理に加え、urlからも画像であるか判定します。
-今回はurlが画像であるかどうかの判定にfastimageを使用します。
-fastimageは本来画像のサイズを取得するためのものですが、(urlの文字列からではなく)実際にurlにアクセスしてファイル形式を判別できるため採用しました。
+以上のように media を取得すると**pic.twitter.com の画像しか取得できない**ため、動画の判定処理に加え、url からも画像であるか判定します。
+今回は url が画像であるかどうかの判定に fastimage を使用します。
+fastimage は本来画像のサイズを取得するためのものですが、(url の文字列からではなく)実際に url にアクセスしてファイル形式を判別できるため採用しました。
 
 ```ruby:app.rb
 require 'twitter'
@@ -64,4 +64,4 @@ imgs.each do |url|
 end
 ```
 
-urlで動画を投稿している場合(vineとか)の処理は書いていません。画像だけでいいかな……
+url で動画を投稿している場合(vine とか)の処理は書いていません。画像だけでいいかな……

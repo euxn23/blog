@@ -54,7 +54,6 @@ https://github.com/nestjs-jp/advent-calendar-2019/tree/master/day18-avoid-decora
 
 現実装の Decorator の挙動については [Decorator と継承](https://qiita.com/euxn23/items/987f359eeb6a6bd45fad) にも書いていますので併せてお読み下さい。
 
-
 ## Validator を分離する
 
 ```typescript
@@ -82,14 +81,14 @@ export class User extends ValidatableUser {
   id!: number;
 
   @Column()
-  @ApiProperty({ example: 'alice07' })
+  @ApiProperty({ example: "alice07" })
   displayId!: string;
 
   @Column()
-  @ApiProperty({ example: 'alice' })
+  @ApiProperty({ example: "alice" })
   name!: string;
 
-  @Column('text')
+  @Column("text")
   @ApiProperty({ example: `Hello, I'm NestJS Programmer!` })
   profileText?: string;
 
@@ -105,14 +104,14 @@ class-validator が継承した Class でも validation ができることを利
 以下のコードを実行すると、バリデーションエラーが発生します。
 
 ```typescript
-import { User } from './src/models/user';
-import { validate } from 'class-validator';
+import { User } from "./src/models/user";
+import { validate } from "class-validator";
 
 async function main() {
   const user = new User();
   user.id = 1;
-  user.displayId = 'alice1234567890123456';
-  user.name = 'alice';
+  user.displayId = "alice1234567890123456";
+  user.name = "alice";
 
   const err = await validate(user, { skipMissingProperties: true });
   console.log(err);
@@ -126,9 +125,9 @@ main().catch(console.error);
 API レスポンスとして使用される / Swagger のドキュメント生成に使用される Class を別に定義します。
 
 ```typescript
-import { IsNotEmpty, MaxLength } from 'class-validator';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, MaxLength } from "class-validator";
+import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { ApiProperty } from "@nestjs/swagger";
 
 export class ValidatableUser {
   id!: number;
@@ -158,7 +157,7 @@ export class User extends ValidatableUser {
   @Column()
   name!: string;
 
-  @Column('text')
+  @Column("text")
   profileText?: string;
 
   @Column()
@@ -168,16 +167,16 @@ export class User extends ValidatableUser {
   updatedAt!: number;
 }
 
-type TransferUserType = Omit<User, 'createdAt' | 'updatedAt'>;
+type TransferUserType = Omit<User, "createdAt" | "updatedAt">;
 
 export class TransferUser extends User implements TransferUserType {
   @ApiProperty({ example: 1 })
   id!: number;
 
-  @ApiProperty({ example: 'alice07' })
+  @ApiProperty({ example: "alice07" })
   displayId!: string;
 
-  @ApiProperty({ example: 'alice' })
+  @ApiProperty({ example: "alice" })
   name!: string;
 
   @ApiProperty({ example: `Hello, I'm NestJS Programmer!` })
@@ -235,9 +234,9 @@ $ curl localhost:3000\?displayId=alice1234567890123456\&name=alice
 次に、 User Class から TypeORM の Decorator を分離します。
 
 ```typescript
-import { IsNotEmpty, MaxLength } from 'class-validator';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, MaxLength } from "class-validator";
+import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { ApiProperty } from "@nestjs/swagger";
 
 export class ValidatableUser {
   id!: number;
@@ -266,16 +265,16 @@ export class User extends ValidatableUser {
   updatedAt!: number;
 }
 
-type SerializableUserType = Omit<User, 'createdAt' | 'updatedAt'>;
+type SerializableUserType = Omit<User, "createdAt" | "updatedAt">;
 
 export class SerializableUser extends User implements SerializableUserType {
   @ApiProperty({ example: 1 })
   id!: number;
 
-  @ApiProperty({ example: 'alice07' })
+  @ApiProperty({ example: "alice07" })
   displayId!: string;
 
-  @ApiProperty({ example: 'alice' })
+  @ApiProperty({ example: "alice" })
   name!: string;
 
   @ApiProperty({ example: `Hello, I'm NestJS Programmer!` })
@@ -292,7 +291,7 @@ export class UserEntity extends User {
   @Column()
   name!: string;
 
-  @Column('text')
+  @Column("text")
   profileText?: string;
 
   @Column()
@@ -364,22 +363,21 @@ export class ValidatableUser extends User {
   updatedAt!: number;
 }
 
-type TransferUserType = Omit<User, 'createdAt' | 'updatedAt'>;
+type TransferUserType = Omit<User, "createdAt" | "updatedAt">;
 
-export class TransferUser extends ValidatableUser
-  implements TransferUserType {
+export class TransferUser extends ValidatableUser implements TransferUserType {
   @ApiProperty({ example: 1 })
   id!: number;
 
-  @ApiProperty({ example: 'alice07' })
+  @ApiProperty({ example: "alice07" })
   displayId!: string;
 
-  @ApiProperty({ example: 'alice' })
+  @ApiProperty({ example: "alice" })
   name!: string;
 
   @ApiProperty({ example: `Hello, I'm NestJS Programmer!` })
   profileText?: string;
-  
+
   toObject() {
     return {
       id: this.id,
@@ -400,7 +398,7 @@ export class UserEntity extends ValidatableUser {
   @Column()
   name!: string;
 
-  @Column('text')
+  @Column("text")
   profileText?: string;
 
   @Column()
@@ -480,16 +478,16 @@ export abstract class ValidatableUser extends AbstractUser {
   updatedAt?: number;
 }
 
-export type TransferUserType = Omit<UserInterface, 'createdAt' | 'updatedAt'>;
+export type TransferUserType = Omit<UserInterface, "createdAt" | "updatedAt">;
 
 export class User extends ValidatableUser {
   @ApiProperty({ example: 1 })
   id!: number;
 
-  @ApiProperty({ example: 'alice07' })
+  @ApiProperty({ example: "alice07" })
   displayId!: string;
 
-  @ApiProperty({ example: 'alice' })
+  @ApiProperty({ example: "alice" })
   name!: string;
 
   @ApiProperty({ example: `Hello, I'm NestJS Programmer!` })
@@ -515,7 +513,7 @@ export class UserEntity extends ValidatableUser {
   @Column()
   name!: string;
 
-  @Column('text')
+  @Column("text")
   profileText?: string;
 
   @Column()

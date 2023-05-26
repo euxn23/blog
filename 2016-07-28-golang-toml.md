@@ -3,18 +3,19 @@ title: "golangで設定記述にTOMLを使う"
 date: 2016-07-28
 ---
 
-golangでの設定記述言語はYAMLの他にTOMLも人気があるようです。
+golang での設定記述言語は YAML の他に TOML も人気があるようです。
 
 - [go-yaml/yaml](https://github.com/go-yaml/yaml) Star: 861
 - [BurntSushi/toml](https://github.com/BurntSushi/toml) Star: 965
 
-(2016/7/28時点)
+(2016/7/28 時点)
 
-TOMLは[dein.vim](https://github.com/Shougo/dein.vim)のプラグイン記述でも使われていますし、
-YAMLに比べシンプルかつ、tomlライブラリの方が親切そうなので、TOMLを使用しています。
+TOML は[dein.vim](https://github.com/Shougo/dein.vim)のプラグイン記述でも使われていますし、
+YAML に比べシンプルかつ、toml ライブラリの方が親切そうなので、TOML を使用しています。
 
 # 使い方
-[TOMLの仕様](https://github.com/toml-lang/toml)に沿って記述しますが、簡単な設定であればシンプルに記述できます。
+
+[TOML の仕様](https://github.com/toml-lang/toml)に沿って記述しますが、簡単な設定であればシンプルに記述できます。
 
 ```toml
 [API]
@@ -25,7 +26,7 @@ debug    = true
 
 ```
 
-golangのコード側では、コンフィグファイルに対応したstructを定義します。
+golang のコード側では、コンフィグファイルに対応した struct を定義します。
 
 ```go
 package main
@@ -56,15 +57,16 @@ fmt.Println("port:", config.API.port) //=> 8000
 
 ```
 
-tomlファイルに`[]`で指定した名称と、代入する構造体のメンバの名称は揃えます。
-golangがCamelCaseなのでtomlもCamelCaseになります。頭文字は問われないようです。
+toml ファイルに`[]`で指定した名称と、代入する構造体のメンバの名称は揃えます。
+golang が CamelCase なので toml も CamelCase になります。頭文字は問われないようです。
 
-おおもと(ここではConfig)以下の構造体の名称はTOML側では記述されません。
+おおもと(ここでは Config)以下の構造体の名称は TOML 側では記述されません。
 
-# Arrayになるケース
-テストケースのリクエストをTOMLで書く場合等にArrayを使いたくなると思います。
-TOMLは`[[]]`でArray要素を記述できます。
-例として検索を行うAPIのテストケースを記述すると以下のようになります。
+# Array になるケース
+
+テストケースのリクエストを TOML で書く場合等に Array を使いたくなると思います。
+TOML は`[[]]`で Array 要素を記述できます。
+例として検索を行う API のテストケースを記述すると以下のようになります。
 
 ```go
 package test
@@ -111,14 +113,14 @@ searchWord = "forbiddenWord"
 
 ```
 
-基本は上記と同様に、TOMLに記載するArrayになる要素の名称と、おおもとの構造体のメンバの名称を揃えます。
-この際、該当のメンバの型を、各要素の値に対応した構造体のArrayにします。
+基本は上記と同様に、TOML に記載する Array になる要素の名称と、おおもとの構造体のメンバの名称を揃えます。
+この際、該当のメンバの型を、各要素の値に対応した構造体の Array にします。
 
-実態は普通の構造体なので、tag等も普通に使えます。
+実態は普通の構造体なので、tag 等も普通に使えます。
 構造体をクエリストリングに変換する[google/go-querystring](https://github.com/google/go-querystring)の`url`タグも正常に動作します。
 
-
 # 参考
-tomlについては以下で詳しく説明されています。
 
-- [GOとTOML](https://speakerdeck.com/cubicdaiya/gototoml)
+toml については以下で詳しく説明されています。
+
+- [GO と TOML](https://speakerdeck.com/cubicdaiya/gototoml)

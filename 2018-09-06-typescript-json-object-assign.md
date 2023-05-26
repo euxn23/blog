@@ -8,23 +8,22 @@ date: 2018-09-06
 
 ---
 
-手法の1つとして発見したのですが、これが正しいかわからないのでご意見ください。(というか、ご意見が欲しくて書いた)
+手法の 1 つとして発見したのですが、これが正しいかわからないのでご意見ください。(というか、ご意見が欲しくて書いた)
 TypeScript と書いたが、 babel でも動くかもしれない。
 
 前提として以下の interface / class を定義する。
 
 ```typescript
-
 interface UserType {
-  name: string
-  age: number
+  name: string;
+  age: number;
 }
 
 class User implements UserType {
-  name: string
-  age: number
+  name: string;
+  age: number;
   constructor(user: UserType) {
-    Object.assign(this, hoge)
+    Object.assign(this, hoge);
   }
 }
 ```
@@ -32,12 +31,8 @@ class User implements UserType {
 class 生成時に値をそのまま入れたい場合は、constructor に以下のように書くことで実現できる。
 
 ```typescript
-
 class User implements UserType {
-  constructor(
-    public name: string,
-    public age: number
-  ) {}
+  constructor(public name: string, public age: number) {}
 }
 ```
 
@@ -47,12 +42,9 @@ class User implements UserType {
 
 ```typescript
 class User implements UserType {
-  constructor(
-    name: string,
-    age: number
-  ) {
-    this.name = name
-    this.age = age
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
 ```
@@ -61,15 +53,15 @@ class User implements UserType {
 
 ```typescript
 interface UserType {
-  name: string
-  age: number
+  name: string;
+  age: number;
 }
 
 class User implements UserType {
-  name: string
-  age: number
+  name: string;
+  age: number;
   constructor(user: UserType) {
-    Object.assign(this, user)
+    Object.assign(this, user);
   }
 }
 ```

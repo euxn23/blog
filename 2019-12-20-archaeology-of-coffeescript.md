@@ -4,7 +4,9 @@ date: 2019-12-20
 ---
 
 この記事は [JavaScript アドベントカレンダー 2019](https://qiita.com/advent-calendar/2019/javascript) の 20 日目の記事です。
+
 ## はじめに
+
 CoffeeScript という AltJS が存在します。2017 年には ES2015+ にも対応した CoffeeScript2 も出ました。
 現在では使われていないものの、 CoffeeScript が与えた(と思われる)影響は大きく、 JavaScript の複雑な歴史事情を学ぶ必要のない現代においても、考古学として価値のあるものかと思います。
 
@@ -29,7 +31,7 @@ CoffeeScript における `=>` は `function() { ... }` の置き換えであり
 今ではおなじみの記法ですね。
 
 ```javascript
-const message = `count: ${count}`
+const message = `count: ${count}`;
 ```
 
 Ruby が元ネタなのか、 coffeescript では Ruby と同じ記法で `""` で囲い、 `#{}` を使って展開しています。
@@ -53,22 +55,20 @@ class Animal
 Python や YAML のようなインデントベースで Object を表す記法を利用した Class 定義で、 ES5 に変換すると以下になります。
 
 ```javascript
-(function() {
+(function () {
   var Animal;
 
-  Animal = (function() {
+  Animal = (function () {
     function Animal(name) {
       this.name = name;
     }
 
-    Animal.prototype.move = function(meters) {
+    Animal.prototype.move = function (meters) {
       return alert(this.name + (" moved " + meters + "m."));
     };
 
     return Animal;
-
   })();
-
 }).call(this);
 ```
 
@@ -100,7 +100,7 @@ JavaScript 仕様として Class Fields が定義されるより以前にトラ�
 
 ```javascript
 class Cat {}
-Cat.type = 'Siamese'
+Cat.type = "Siamese";
 ```
 
 この使用上、 `name` という static field は使えません。
@@ -108,11 +108,11 @@ Cat.type = 'Siamese'
 さらに悪いことに、 decaffeinate ではこの Class 定義の後付けを隠蔽するような以下のようなコードが出力されました。
 
 ```javascript
-var Cat = (function() {
+var Cat = (function () {
   let type = undefined;
   Cat = class Cat {
     static initClass() {
-      type = 'Siamese';
+      type = "Siamese";
     }
   };
   Cat.initClass();
@@ -125,7 +125,7 @@ var Cat = (function() {
 ```javascript
 const obj = {
   user: {
-    name: 
+    name:
       'euxn'
     }
   }
@@ -135,7 +135,7 @@ console.log(obj?.user)
 ```
 
 これも、 CoffeeScript にはいち早く入っていました。
-Ruby でも 2.3(2015年12月)で safe navigation operator が入ったので、元ネタはどこでしょう……？
+Ruby でも 2.3(2015 年 12 月)で safe navigation operator が入ったので、元ネタはどこでしょう……？
 
 ## おわりに
 

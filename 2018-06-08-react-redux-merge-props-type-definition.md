@@ -8,7 +8,7 @@ date: 2018-06-08
 型定義無しの場合は以下のように書く前提とする。
 
 ```typescript
-export default connect(mapStateToProps, mapDispatchToProps)(MyComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);
 ```
 
 型定義を付ける場合は Generics 記法で以下のように書く。
@@ -17,7 +17,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyComponent)
 export default connect<StateProps, DispatchProps, OwnProps>(
   mapStateProps,
   mapDispatchToProps
-)(MyComponent)
+)(MyComponent);
 ```
 
 この記法により、 `mapStateToProps` `DispatchProps` により生成される Props の型、 `OwnProps`(`<MyComponent />` に渡す Props) の型がそれぞれ定義されるため、Component 記述の際に渡される Props に対して型制約を付けることができる。
@@ -35,7 +35,7 @@ export default connect<StateProps, DispatchProps, OwnProps, Props>(
   mapStateProps,
   mapDispatchToProps,
   mergeProps
-)(MyComponent)
+)(MyComponent);
 ```
 
 mergeProps で dispatch をする場合は以下になるかと思われる。
@@ -45,10 +45,10 @@ export default connect<StateProps, {}, OwnProps, Props>(
   mapStateProps,
   (dispatch: Dispatch) => ({ dispatch }),
   mergeProps
-)(MyComponent)
+)(MyComponent);
 ```
 
-多くの解説では上記の3つまでしか触れられていないことが多いが、 connect の Generics 引数(？)は型定義を見ると 5 つまで取れることがわかる。
+多くの解説では上記の 3 つまでしか触れられていないことが多いが、 connect の Generics 引数(？)は型定義を見ると 5 つまで取れることがわかる。
 
 ```typescript
 export interface Connect {

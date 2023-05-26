@@ -8,7 +8,6 @@ date: 2018-05-22
 entry 作る箇所だけ小さく別ライブラリにしました。
 [euxn23/webpacker-entry](https://github.com/euxn23/webpacker-entry)
 
-
 ## はじめに
 
 この内容は [meguro.es#15](https://megurocss.connpass.com/event/85649/) での発表を元に内容を整理したものです。
@@ -16,8 +15,6 @@ entry 作る箇所だけ小さく別ライブラリにしました。
 リポジトリ: [euxn23/webpacker-pure-config](https://github.com/euxn23/webpacker-pure-config)
 
 スライド: [slideshare](https://www.slideshare.net/euxn/20180522-can-i-go-along-with-webpacker-frontendonrails)
-
-
 
 ## Rails で JS つらかった問題
 
@@ -34,8 +31,7 @@ entry 作る箇所だけ小さく別ライブラリにしました。
 - npm エコシステムベースのビルドフローが使える
 - Rails 向けの View Helper
 
-__普通の JS 開発ができる！！__
-
+**普通の JS 開発ができる！！**
 
 ## 本当に？
 
@@ -43,33 +39,32 @@ __普通の JS 開発ができる！！__
 
 ```javascript
 const createEnvironment = () => {
-    const path = resolve(__dirname, 'environments', `${nodeEnv}.js`)
-    const constructor = existsSync(path) ? require(path): Environment
-    return new constructor()
-}
+  const path = resolve(__dirname, "environments", `${nodeEnv}.js`);
+  const constructor = existsSync(path) ? require(path) : Environment;
+  return new constructor();
+};
 ```
 
 - 独自の config 記法
 
 ```javascript
 // Set nested object prop using path notation
-environment.config.set('resolve.extensions', ['.foo', '.bar'])
-environment.config.set('output.filename', '[name].js')
+environment.config.set("resolve.extensions", [".foo", ".bar"]);
+environment.config.set("output.filename", "[name].js");
 
 // Merge custom config
-environment.config.merge(customConfig)
+environment.config.merge(customConfig);
 
 // Delete a property
-environment.config.delete('output.chunkFilename')
+environment.config.delete("output.chunkFilename");
 ```
 
 - webpack v4 への未追従
 
 > Webpacker makes it easy to use the JavaScript pre-processor and bundler webpack 3.x.x+ to manage application-like JavaScript in Rails.
-![webpack-entry.png](https://qiita-image-store.s3.amazonaws.com/0/85885/eff0a6aa-d228-24ae-06e8-60830502e698.png)
+> ![webpack-entry.png](https://qiita-image-store.s3.amazonaws.com/0/85885/eff0a6aa-d228-24ae-06e8-60830502e698.png)
 
 ![](/static/images/webpacker-npm.png)![webpacker-npm.png](https://qiita-image-store.s3.amazonaws.com/0/85885/3176b2a4-4b84-1524-93b2-46103aaa0e44.png)
-
 
 ## 何がつらいか
 
@@ -78,21 +73,20 @@ environment.config.delete('output.chunkFilename')
 - Undocumented な挙動
 - Webpack 本体への追従の遅さ
 
-__webpacker.js 危険なのでは？__
-
+**webpacker.js 危険なのでは？**
 
 ## 脱 webpacker.js
 
 ### config の要件
+
 - ruby 側の webpacker のデフォルト設定で動くようにする
-    - JS の配置ディレクトリ(public/packs or public/packs-test)
-    - キャッシュ回避のためのハッシュ(Rails の作法)
-        ![webpack-manifest.png](https://qiita-image-store.s3.amazonaws.com/0/85885/ba869e98-2e03-3165-f632-d46328d51290.png)
-    - ManifestPlugin ベースの key-value の entry 設定
-        ![webpack-entry.png](https://qiita-image-store.s3.amazonaws.com/0/85885/09fa8148-aa4f-4041-d2c3-f22869865fb6.png)
+  - JS の配置ディレクトリ(public/packs or public/packs-test)
+  - キャッシュ回避のためのハッシュ(Rails の作法)
+    ![webpack-manifest.png](https://qiita-image-store.s3.amazonaws.com/0/85885/ba869e98-2e03-3165-f632-d46328d51290.png)
+  - ManifestPlugin ベースの key-value の entry 設定
+    ![webpack-entry.png](https://qiita-image-store.s3.amazonaws.com/0/85885/09fa8148-aa4f-4041-d2c3-f22869865fb6.png)
 
 { [relativePath]: absolutePath }
-
 
 ### 実装
 
@@ -137,8 +131,7 @@ const flatten = paths => {
 ...
 ```
 
-__煩雑__
-
+**煩雑**
 
 ## ライブラリ化
 
@@ -147,7 +140,7 @@ __煩雑__
 ### 特徴
 
 - webpack 準拠の config で実装
-    - 公式 Docs 準拠に読み書き可能
+  - 公式 Docs 準拠に読み書き可能
 
 ```javascript
 return {
@@ -178,9 +171,8 @@ return {
 - 暗黙的な NODE_ENV 依存無し(環境別に提供)
 
 ```javascript
-const { dev } = require('webpacker-pure-config')
-module.exports = dev()
-
+const { dev } = require("webpacker-pure-config");
+module.exports = dev();
 ```
 
 - Config Object が export されるだけなので Rest Spread で拡張可能
@@ -191,16 +183,14 @@ module.exports = {
   plugins: [
     ...baseConfig.plugins,
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
-}
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    }),
+  ],
+};
 ```
 
 - Rails / webpacker.yml 依存無し(ゼロコンフィグ)
 
-
 ## Q. Webpack に追従できるの？
 
 A. 独自機能とかないのでまあ、がんばります(がんばりましょう)(一緒にメンテしてください)
-

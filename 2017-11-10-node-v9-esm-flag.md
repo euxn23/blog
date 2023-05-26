@@ -5,11 +5,11 @@ date: 2017-11-10
 
 ※ 03/22 追記
 Node v10 での実装についてより詳細な内容が @about_hiroppy さんによって書かれていますので現在はそちらをご参考ください。
-[Node.jsとECMAScript Modules](http://blog.hiroppy.me/entry/nodejs-esm)
+[Node.js と ECMAScript Modules](http://blog.hiroppy.me/entry/nodejs-esm)
 
 ---
 
-Node v9 (実際にはv8系の後半から実装されていたようですが)では、フラグ付きで ES Modules の解釈ができるようになっています。
+Node v9 (実際には v8 系の後半から実装されていたようですが)では、フラグ付きで ES Modules の解釈ができるようになっています。
 import/export 双方とも `.mjs` となっている必要があるようです。
 
 ```js:index.mjs
@@ -69,8 +69,8 @@ Messanger.esm() //=> Hello ES Modules!
 ```
 
 後者だと呼び出し上、 Messanger の static メソッドと見分けがつかなくなるため、前者の方が良さそうに感じます。
-数年後、ES Modules が標準になればライブラリ群もES Modules でロード可能になるだろうと思うので、それまではライブラリ等の `.js` の named import 不可については意識していく必要がありそうです。
+数年後、ES Modules が標準になればライブラリ群も ES Modules でロード可能になるだろうと思うので、それまではライブラリ等の `.js` の named import 不可については意識していく必要がありそうです。
 
 ---
 
-参考: [Node.jsのES Modulesサポートの現状確認と備え](http://teppeis.hatenablog.com/entry/2017/08/es-modules-in-nodejs)
+参考: [Node.js の ES Modules サポートの現状確認と備え](http://teppeis.hatenablog.com/entry/2017/08/es-modules-in-nodejs)
