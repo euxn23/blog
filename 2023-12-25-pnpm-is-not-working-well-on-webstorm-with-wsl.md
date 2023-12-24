@@ -14,6 +14,8 @@ pnpm で npm package をインストールしていても、WebStorm 上でイ�
 
 これが symlink ベースである pnpm と相性が悪く問題となっていると推測されます。WSL2 側の問題であるため、そちらの解消を待つしかなさそうです。
 
+---
+
 ## English translation
 
 Even when I install npm packages with pnpm, symptoms such as continuing to pop up the `install dependencies` on WebStorm, or displaying `package is not installed` when using prettier and so on, are recognized as not having been installed.
