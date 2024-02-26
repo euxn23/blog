@@ -1,10 +1,10 @@
 {
-  "name": "entry-blog",
+  "name": "blog",
   "version": "1.0.0",
   "main": "index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "format": "prettier -w ./*.md"
+    "format": "prettier -w ./entries/*.md"
   },
   "devDependencies": {
     "prettier": "^2.8.8"

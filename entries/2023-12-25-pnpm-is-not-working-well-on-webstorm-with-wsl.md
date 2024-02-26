@@ -6,7 +6,7 @@ date: 2023-12-25
 ### 更新 (2023-12-26)
 
 この問題についてワークアラウンドを発見しました
-[Use pnpm on WebStorm with WSL using node-linker config](2023-12-26-use-pnpm-on-webstorm-with-wsl-using-node-linker-config)の投稿をご確認ください。
+[Use pnpm on WebStorm with WSL using node-linker config](2023-12-26-use-pnpm-on-webstorm-with-wsl-using-node-linker-config.md)の投稿をご確認ください。
 
 ---
 
@@ -28,7 +28,7 @@ pnpm で npm package をインストールしていても、WebStorm 上でイ�
 ### UPDATE (2023-12-26)
 
 I found a workaround of this problem.
-See [Use pnpm on WebStorm with WSL using node-linker config](2023-12-26-use-pnpm-on-webstorm-with-wsl-using-node-linker-config) post.
+See [Use pnpm on WebStorm with WSL using node-linker config](2023-12-26-use-pnpm-on-webstorm-with-wsl-using-node-linker-config.md) post.
 
 ---
 

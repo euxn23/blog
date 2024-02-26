@@ -3,7 +3,7 @@ title: "GitHub Actions 内で他の repository に push する"
 date: 2024-02-17
 ---
 
-追記: よく考えると簡単にできたので大幅に書き換え。元の趣旨である別 repository の workflow の発火は [GitHub Actions 内で他の repository の workflow を発火する](2024-02-17-02-trigger-github-workflow-of-other-repo-in-github-actions) に移植。
+追記: よく考えると簡単にできたので大幅に書き換え。元の趣旨である別 repository の workflow の発火は [GitHub Actions 内で他の repository の workflow を発火する](2024-02-17-02-trigger-github-workflow-of-other-repo-in-github-actions.md) に移植。
 
 ---
 
