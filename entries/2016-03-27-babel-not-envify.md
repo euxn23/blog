@@ -37,7 +37,7 @@ $ npm install babel-plugin-transform-inline-environment-variables
 browsefiry を実行する際には、以下のように plugin として指定する。
 
 ```shell
-$ browserify src/web.js -o public/js/app.js -t [ babelify --presets [ es2015 ] --plugins [ transform-inline-environment-variables ] ]
+$ browserify src/web.js -o public/js/app.js -t [ babelify --presets [ es2015 ] --plugins [ transform-inline-environment-variables ] ]
 ```
 
 これにより、上記のような node と同様のコードが動作する。
