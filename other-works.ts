@@ -35,7 +35,7 @@ export async function getOtherWorks() {
   const zennEntries = zennArticles.map((article: any) => {
     const date = new Date(article.published_at);
     return {
-      date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+      date: `${date.getFullYear()}-${`0${date.getMonth() + 1}`.slice(-2)}-${`0${date.getDate()}`.slice(-2)}`,
       title: article.title,
       media: "Zenn",
       url: `${ZENN_URL}${article.path}`,
