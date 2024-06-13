@@ -7,6 +7,18 @@ type Entry = {
 
 const DW_ENTRIES: Entry[] = [
   {
+    date: '2024-05-11',
+    title: 'Powerfully Typed TypeScript',
+    media: 'TSKaigi 2024',
+    url: 'https://speakerdeck.com/euxn23/powerfully-typed-typescript'
+  },
+  {
+    date: "2024-05-10",
+    title: "pnpm の node_modules を探検して理解しよう",
+    media: "ドワンゴ教育サービス開発者ブログ",
+    url: "https://blog.nnn.dev/entry/2024/05/10/110000",
+  },
+  {
     date: "2023-12-20",
     title: "レガシーブラウザ向けのビルドオプションを剪定する",
     media: "ドワンゴ教育サービス開発者ブログ",
